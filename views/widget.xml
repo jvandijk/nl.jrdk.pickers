@@ -1,0 +1,5 @@
+<Alloy>
+    <View>
+        <Picker id="picker" selectionIndicator="true" onChange="_onChange"/>
+    </View>
+</Alloy>

@@ -1,0 +1,7 @@
+<Alloy>
+    <View id="toolbar">
+        <View id="right" onTouchend="_onTouchend">
+            <Label id="icon">\uF00D</Label>
+        </View>
+    </View>
+</Alloy>

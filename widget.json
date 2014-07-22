@@ -1,0 +1,13 @@
+{
+    "id": "nl.jrdk.pickers",
+    "name": "nl.jrdk.pickers",
+    "description" : "Widget for plain and date pickers",
+    "author": "Jeroen van Dijk",
+    "version": "1.0",
+    "copyright":"Copyright (c) 2014",
+    "license":"Apache License, Version 2.0",
+    "min-alloy-version": "1.0",
+    "min-titanium-version":"3.2",
+    "tags":"picker,plain,date,time,collection,model",
+    "platforms":"ios"
+}

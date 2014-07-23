@@ -1,6 +1,6 @@
 # Picker widget [![Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://www.appcelerator.com/titanium/) [![Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http://www.appcelerator.com/alloy/)
 
-![demo](https://github.com/jvandijk/nl.pickers/raw/master/docs/demo.png)
+![demo](https://github.com/jvandijk/nl.jrdk.pickers/raw/master/docs/demo.png)
 
 ## Widget
 This widget's intended use is to connect Alloy Collections to a Picker and after the user selects a value get the model back. Next to that you'll be able to style the toolbar above the picker to fit your app.

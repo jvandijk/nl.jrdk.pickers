@@ -3,7 +3,7 @@
     "name": "nl.jrdk.pickers",
     "description" : "Widget for plain and date pickers",
     "author": "Jeroen van Dijk",
-    "version": "1.0",
+    "version": "1.0.1",
     "copyright":"Copyright (c) 2014",
     "license":"Apache License, Version 2.0",
     "min-alloy-version": "1.0",

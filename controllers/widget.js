@@ -54,7 +54,7 @@ function setDataCollection(data) {
     column = Ti.UI.createPickerColumn();
 
     data.map(function(model) {
-        column.addRow(Ti.UI.createPickerRow(model.toJSON()));
+        column.addRow(Ti.UI.createPickerRow({id: model.get('id'), title: model.get('title')}));
     })
 
     columns.push(column);

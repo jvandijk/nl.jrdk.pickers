@@ -8,6 +8,6 @@
     "license":"Apache License, Version 2.0",
     "min-alloy-version": "1.0",
     "min-titanium-version":"3.2",
-    "tags":"picker,plain,date,time,collection,model",
-    "platforms":"ios"
+    "tags":"picker,dialog,plain,date,time,collection,model",
+    "platforms":"ios,android"
 }

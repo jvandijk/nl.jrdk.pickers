@@ -51,17 +51,13 @@ function setDataCollection(data) {
     _data = data;
 
     if (OS_IOS) {
-        var columns = [], column;
-
-        column = Ti.UI.createPickerColumn();
+        var opts = [];
 
         _data.map(function(model) {
-            column.addRow(Ti.UI.createPickerRow({id: model.get('id'), title: model.get('title')}));
+            opts.push(Ti.UI.createPickerRow({id: model.get('id'), title: model.get('title')}));
         });
 
-        columns.push(column);
-
-        $.picker.add(columns);
+        $.picker.add(opts);
     } else if (OS_ANDROID) {
         var opts = {
             options: _data.pluck('title')
@@ -105,23 +101,6 @@ function triggerUpdate() {
         source: $,
         model: value
     });
-}
-
-// Get the current picker values
-/*function selectedValues() {
-    var columns, row, _selected;
-    columns = $.picker.getColumns();
-
-    for (var i = 0; i < columns.length; i++) {
-        row = $.picker.getSelectedRow(i);
-        _selected = row.id;
-    }
-}*/
-
-function _onChange(e) {
-    if (e.type === 'change') {
-        triggerUpdate();
-    }
 }
 
 /*** EXPORTS ***/

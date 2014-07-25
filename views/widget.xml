@@ -1,5 +1,5 @@
 <Alloy>
     <View>
-        <Picker id="picker" selectionIndicator="true" onChange="_onChange" platform="ios"/>
+        <Picker id="picker" selectionIndicator="true" onChange="triggerUpdate" platform="ios"/>
     </View>
 </Alloy>

@@ -74,7 +74,7 @@ The callback receives an Object containing 3 properties:
 
 | Property | Type | Purpose |
 | -------- | ---- | ------- |
-| toolbar | Boolean | If `false`, no toolbar will be present above the picker |
+| toolbar | Boolean | If `false`, no toolbar will be present above the picker in iOS |
 | toolbarBackgroundColor | String | Define the background color of the toolbar |
 | toolbarOpacity | String | Optional Define the transparancy of the toolbar |
 | toolbarColor | String | Optional Define the color of the close icon |
@@ -96,15 +96,14 @@ The callback receives an Object containing 3 properties:
 Feel free to help me improve this widget by forking and submitting pull requests or issues with more ideas.
 
 * Add support for dates
-* Add support for Android
-* Add support for multiple colums
 * Add more custom and run-time style examples
 * Support more (icon) fonts
 * Support next / previous form element
 
 ## Changelog
 
-* 1.0 Initial version
+* 1.1.0 Add Android optionDialog support
+* 1.0.0 Initial version
 
 ## Licenses
 This project is licensed under the Apache Public License (Version 2). Please see the LICENSE.txt file for the full license.

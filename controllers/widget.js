@@ -1,7 +1,7 @@
 var _initted = false,
     _toolbar,
     _data,
-    _selected,
+    _picker,
     _properties = {};
 
 if (arguments[0]) {
@@ -22,14 +22,13 @@ if (arguments[0]) {
 }
 
 function applyProperties(properties) {
-    var _apply = {};
     properties = properties || {};
     _.extend(_properties, properties);
 
     if (!_initted) {
         _initted = true;
 
-        if (_properties.toolbar) {
+        if (OS_IOS && _properties.toolbar) {
             _properties.__parent = $;
             _toolbar = Widget.createController('toolbar', _properties);
         }
@@ -41,7 +40,7 @@ function applyProperties(properties) {
             });
         }
     } else {
-        if (_toolbar) {
+        if (OS_IOS && _toolbar) {
             _toolbar.applyProperties(_properties);
         }
     }
@@ -49,24 +48,39 @@ function applyProperties(properties) {
 
 // Build picker column(s) and rows
 function setDataCollection(data) {
-    var columns = [], column;
     _data = data;
-    column = Ti.UI.createPickerColumn();
 
-    data.map(function(model) {
-        column.addRow(Ti.UI.createPickerRow({id: model.get('id'), title: model.get('title')}));
-    })
+    if (OS_IOS) {
+        var columns = [], column;
 
-    columns.push(column);
+        column = Ti.UI.createPickerColumn();
 
-    $.picker.add(columns);
+        _data.map(function(model) {
+            column.addRow(Ti.UI.createPickerRow({id: model.get('id'), title: model.get('title')}));
+        });
+
+        columns.push(column);
+
+        $.picker.add(columns);
+    } else if (OS_ANDROID) {
+        var opts = {
+            options: _data.pluck('title')
+        };
+
+        _picker = Ti.UI.createOptionDialog(opts);
+        _picker.addEventListener('click', triggerUpdate);
+    }
 }
 
 function show() {
-    $.widget.animate(Ti.UI.createAnimation({
-        bottom: 0,
-        duration: 300
-    }));
+    if (OS_IOS) {
+        $.widget.animate(Ti.UI.createAnimation({
+            bottom: 0,
+            duration: 300
+        }));
+    } else {
+        _picker.show();
+    }
 }
 
 // Done button onClick function
@@ -80,10 +94,16 @@ function hide() {
 }
 
 function triggerUpdate() {
+    var value;
+    if (OS_IOS) {
+        value = _data.get($.picker.getSelectedRow(0).id);
+    } else if (OS_ANDROID) {
+        value = _data.at(_picker.getSelectedIndex());
+    }
     $.trigger('change', {
         type: "change",
         source: $,
-        model: _data.get($.picker.getSelectedRow(0).id)
+        model: value
     });
 }
 

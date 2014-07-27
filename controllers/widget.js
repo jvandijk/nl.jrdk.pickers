@@ -1,4 +1,5 @@
-var _initted = false,
+var moment = require("alloy/moment"),
+    _initted = false,
     _toolbar,
     _data,
     _picker,
@@ -21,7 +22,13 @@ if (arguments[0]) {
     var args = {};
 }
 
+/**
+ * Setup method for the widget its look & feel
+ *
+ * @param properties
+ */
 function applyProperties(properties) {
+    var _apply = {};
     properties = properties || {};
     _.extend(_properties, properties);
 
@@ -39,15 +46,43 @@ function applyProperties(properties) {
                 hide();
             });
         }
+
+        if (_properties.type && _properties.type == 'PICKER_TYPE_DATE') {
+            $.picker.setType(Ti.UI.PICKER_TYPE_DATE);
+
+            if (!_properties.dateFormat) {
+                _properties.dateFormat = 'DD-MM-YYYY';
+            }
+
+            _apply = _.pick(_properties, 'minDate', 'maxDate');
+            if (_.size(_apply)) {
+                $.picker.applyProperties(_apply);
+            }
+        }
     } else {
         if (OS_IOS && _toolbar) {
             _toolbar.applyProperties(_properties);
         }
+
+        _apply = _.pick(_properties, 'minDate', 'maxDate');
+        if (_.size(_apply)) {
+            $.picker.applyProperties(_apply);
+        }
     }
 }
 
-// Build picker column(s) and rows
+/**
+ * Setup the data collection to be used in the PICKER_TYPE_PLAIN
+ * This method is ignored when using PICKER_TYPE_DATE
+ *
+ * @param data
+ */
 function setDataCollection(data) {
+    if (isDate()) {
+        Ti.API.info('Set data collection cannot be used in combination with dates');
+        return;
+    }
+
     _data = data;
 
     if (OS_IOS) {
@@ -63,11 +98,15 @@ function setDataCollection(data) {
             options: _data.pluck('title')
         };
 
+        $.picker.hide();
         _picker = Ti.UI.createOptionDialog(opts);
         _picker.addEventListener('click', triggerUpdate);
     }
 }
 
+/**
+ * Show picker, on iOS in the bottom and Android as dialog
+ */
 function show() {
     if (OS_IOS) {
         $.widget.animate(Ti.UI.createAnimation({
@@ -75,11 +114,20 @@ function show() {
             duration: 300
         }));
     } else {
-        _picker.show();
+        if (isDate()) {
+            $.picker.showDatePickerDialog({
+                callback: function(e) {
+                    triggerUpdate(e);
+                }});
+        } else {
+            _picker.show();
+        }
     }
 }
 
-// Done button onClick function
+/**
+ * Hide the picker by moving below bottom, and trigger update for callback
+ */
 function hide() {
     $.widget.animate(Ti.UI.createAnimation({
         bottom: '-'+ $.widget.getHeight(),
@@ -89,12 +137,34 @@ function hide() {
     triggerUpdate();
 }
 
-function triggerUpdate() {
+/**
+ * Check if the current constructed picker is of type PICKER_TYPE_DATE
+ *
+ * @returns {boolean}
+ */
+function isDate() {
+    return ($.picker.getType() == Ti.UI.PICKER_TYPE_DATE);
+}
+
+/**
+ *
+ * @param event
+ */
+function triggerUpdate(event) {
     var value;
     if (OS_IOS) {
-        value = _data.get($.picker.getSelectedRow(0).id);
+        if (isDate()) {
+            value = moment($.picker.getValue()).format(_properties.dateFormat)
+        } else {
+            value = _data.get($.picker.getSelectedRow(0).id);
+        }
+
     } else if (OS_ANDROID) {
-        value = _data.at(_picker.getSelectedIndex());
+        if (isDate()) {
+            value = moment(event.value).format(_properties.dateFormat);
+        } else {
+            value = _data.at(_picker.getSelectedIndex());
+        }
     }
     $.trigger('change', {
         type: "change",
@@ -107,7 +177,13 @@ function triggerUpdate() {
 exports.applyProperties = applyProperties;
 exports.show = show;
 exports.hide = hide;
+
 exports.setDataCollection = setDataCollection;
+Object.defineProperties($, {
+    "_data": {
+        set: setDataCollection
+    }
+});
 
 // EVENTS
 exports.addEventListener = $.on;

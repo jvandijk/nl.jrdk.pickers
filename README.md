@@ -66,7 +66,7 @@ The callback receives an Object containing 3 properties:
 
 * `type`: Always `change`.
 * `source`: The widget's main controller, including all non-object properties defined via XML or TSS.
-* `model`: The selected value as Alloy model from the set Alloy Collection
+* `model`: The selected value as Alloy model from the set Alloy Collection, or string date if in PICKER_TYPE_DATE mode
 
 ## Property reference
 
@@ -78,6 +78,10 @@ The callback receives an Object containing 3 properties:
 | toolbarBackgroundColor | String | Define the background color of the toolbar |
 | toolbarOpacity | String | Optional Define the transparancy of the toolbar |
 | toolbarColor | String | Optional Define the color of the close icon |
+| type | String | Optional If "PICKER_TYPE_DATE" is given, a date picker / dialog is created |
+| dateFormat | String | The format in which the selection is returned, default DD-MM-YYYY |
+| minDate | String | A date provided in a [moment.js](http://momentjs.com/docs/#/parsing/string/) formatted structure |
+| maxDate | String | A date provided in a [moment.js](http://momentjs.com/docs/#/parsing/string/) formatted structure |
 
 ### Public interface
 
@@ -86,22 +90,26 @@ The callback receives an Object containing 3 properties:
 | applyProperties() | Main method for setting up and changing the picker |
 | show() | Shows picker |
 | hide() | Hides picker |
-| setDataCollection(collection) | Insert data to be visualized |
+| setDataCollection(collection) | Insert data to be visualized in PICKER_TYPE_PLAIN mode |
 | addEventListener(event, callback) | Attaches event listener |
 | removeEventListener(event, callback) | Removes event listener |
 | fireEvent(event, dictionary) | Fires event on the picker |
 | id | Holds the `id` of the widget, so you have this in events |
 
-# Current roadmap / ideas for improvement
+## Known issues
+The minDate and maxDate properties have no effect on Android due to a [bug](https://jira.appcelerator.org/browse/TIMOB-16173) which is up for resolving in 3.4.0
+
+## Current roadmap / ideas for improvement
 Feel free to help me improve this widget by forking and submitting pull requests or issues with more ideas.
 
-* Add support for dates
+* Add time picker
 * Add more custom and run-time style examples
 * Support more (icon) fonts
 * Support next / previous form element
 
 ## Changelog
 
+* 1.2.0 Add date picker support
 * 1.1.0 Add Android optionDialog support
 * 1.0.0 Initial version
 

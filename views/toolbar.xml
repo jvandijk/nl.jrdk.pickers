@@ -1,7 +1,9 @@
 <Alloy>
-    <View id="toolbar">
-        <View id="right" onTouchend="_onTouchend">
-            <Label id="icon">\uF00D</Label>
-        </View>
-    </View>
+    <Toolbar>
+        <Items>
+            <FlexSpace/>
+            <FlexSpace/>
+            <Button id="icon" title="L('nl.jrdk.pickersDone', 'Gereed')" style="Ti.UI.iPhone.SystemButtonStyle.DONE" onClick="_onClick" />
+        </Items>
+    </Toolbar>
 </Alloy>

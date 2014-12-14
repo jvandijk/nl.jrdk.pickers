@@ -1,19 +1,5 @@
 "#toolbar": {
     width: Ti.UI.FILL,
     top: 0,
-    height: "40dp"
-}
-
-"#right": {
-    height: Ti.UI.SIZE,
-    layout: "vertical",
-    left: "85%",
-    width: "15%"
-}
-
-"#icon": {
-    font: {
-        fontFamily: "FontAwesome",
-        fontSize: "20dp"
-    }
+    height: "44dp"
 }

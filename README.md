@@ -77,7 +77,7 @@ The callback receives an Object containing 3 properties:
 | toolbar | Boolean | If `false`, no toolbar will be present above the picker in iOS |
 | toolbarBackgroundColor | String | Define the background color of the toolbar |
 | toolbarOpacity | String | Optional Define the transparancy of the toolbar |
-| toolbarColor | String | Optional Define the color of the close icon |
+| toolbarColor | String | Optional Define the color of the close text |
 | type | String | Optional If "PICKER_TYPE_DATE" is given, a date picker / dialog is created |
 | dateFormat | String | The format in which the selection is returned, default DD-MM-YYYY |
 | minDate | String | A date provided in a [moment.js](http://momentjs.com/docs/#/parsing/string/) formatted structure |
@@ -97,7 +97,7 @@ The callback receives an Object containing 3 properties:
 | id | Holds the `id` of the widget, so you have this in events |
 
 ## Known issues
-The minDate and maxDate properties have no effect on Android due to a [bug](https://jira.appcelerator.org/browse/TIMOB-16173) which is up for resolving in 3.4.0
+None
 
 ## Current roadmap / ideas for improvement
 Feel free to help me improve this widget by forking and submitting pull requests or issues with more ideas.
@@ -109,6 +109,7 @@ Feel free to help me improve this widget by forking and submitting pull requests
 
 ## Changelog
 
+* 1.3.0 Change custom toolbar into iOS native, resolve iPhone 6 view issue
 * 1.2.0 Add date picker support
 * 1.1.0 Add Android optionDialog support
 * 1.0.0 Initial version

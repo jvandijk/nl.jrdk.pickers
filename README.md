@@ -8,8 +8,7 @@ This widget's intended use is to connect Alloy Collections to a Picker and after
 The structure of the widget is heavily inspired by [fokkezb](https://github.com/fokkezb) his widget implementations. A big thank you is in place here! Thank you!
 
 ## Requirements
-
-* `app/assets/fonts`: The [Font Awesome](http://fortawesome.github.com/Font-Awesome/) font folder
+None
 
 ## Quick Start
 

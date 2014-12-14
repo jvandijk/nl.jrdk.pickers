@@ -1,7 +1,10 @@
 "#widget": {
-    width: Ti.UI.FILL,
-    height: "216dp",
-    bottom: "-216dp"
+    left: 0,
+    right: 0,
+    height: "260dp",
+    bottom: "-260dp",
+    backgroundColor: 'white',
+    zIndex: 99
 }
 
 "#picker": {

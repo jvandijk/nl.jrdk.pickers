@@ -41,10 +41,8 @@ function applyProperties(properties) {
         }
 
         if (_toolbar) {
-            $.widget.add(_toolbar.getView());
-            $.widget.addEventListener('pickerCloseClick', function(event) {
-                hide();
-            });
+            $.widget.add(_toolbar.toolbar);
+            $.widget.addEventListener('pickerCloseClick', hide);
         }
 
         if (_properties.type && _properties.type == 'PICKER_TYPE_DATE') {
@@ -173,10 +171,17 @@ function triggerUpdate(event) {
     });
 }
 
+function cleanup() {
+    if (OS_IOS && _properties.toolbar) {
+        $.widget.removeEventListener('pickerCloseClick', hide);
+    }
+}
+
 /*** EXPORTS ***/
 exports.applyProperties = applyProperties;
 exports.show = show;
 exports.hide = hide;
+exports.cleanup = cleanup;
 
 exports.setDataCollection = setDataCollection;
 Object.defineProperties($, {

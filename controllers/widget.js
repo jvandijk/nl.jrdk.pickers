@@ -52,7 +52,7 @@ function applyProperties(properties) {
                 _properties.dateFormat = 'DD-MM-YYYY';
             }
 
-            _apply = _.pick(_properties, 'minDate', 'maxDate');
+            _apply = _.pick(_properties, 'minDate', 'maxDate', 'value');
             if (_.size(_apply)) {
                 $.picker.applyProperties(_apply);
             }
@@ -62,7 +62,7 @@ function applyProperties(properties) {
             _toolbar.applyProperties(_properties);
         }
 
-        _apply = _.pick(_properties, 'minDate', 'maxDate');
+        _apply = _.pick(_properties, 'minDate', 'maxDate', 'value');
         if (_.size(_apply)) {
             $.picker.applyProperties(_apply);
         }

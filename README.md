@@ -81,6 +81,7 @@ The callback receives an Object containing 3 properties:
 | dateFormat | String | The format in which the selection is returned, default DD-MM-YYYY |
 | minDate | String | A date provided in a [moment.js](http://momentjs.com/docs/#/parsing/string/) formatted structure |
 | maxDate | String | A date provided in a [moment.js](http://momentjs.com/docs/#/parsing/string/) formatted structure |
+| value | JS Date | A date provided as standard JS format to set as value for the date picker |
 
 ### Public interface
 

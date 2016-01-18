@@ -90,7 +90,7 @@ The callback receives an Object containing 3 properties:
 | applyProperties() | Main method for setting up and changing the picker |
 | show() | Shows picker |
 | hide() | Hides picker |
-| setDataCollection(collection) | Insert data to be visualized in PICKER_TYPE_PLAIN mode |
+| setDataCollection(collection, idx) | Insert data to be visualized in PICKER_TYPE_PLAIN mode and optionally select an item |
 | addEventListener(event, callback) | Attaches event listener |
 | removeEventListener(event, callback) | Removes event listener |
 | fireEvent(event, dictionary) | Fires event on the picker |
@@ -109,6 +109,7 @@ Feel free to help me improve this widget by forking and submitting pull requests
 
 ## Changelog
 
+* 1.3.2 Add option to set selected value on plain picker
 * 1.3.0 Change custom toolbar into iOS native, resolve iPhone 6 view issue
 * 1.2.0 Add date picker support
 * 1.1.0 Add Android optionDialog support

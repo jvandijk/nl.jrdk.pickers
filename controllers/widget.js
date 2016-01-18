@@ -75,13 +75,14 @@ function applyProperties(properties) {
  *
  * @param data
  */
-function setDataCollection(data) {
+function setDataCollection(data, selectedIndex) {
     if (isDate()) {
         Ti.API.info('Set data collection cannot be used in combination with dates');
         return;
     }
 
     _data = data;
+    selectedIndex = selectedIndex || 0;
 
     if (OS_IOS) {
         var opts = [];
@@ -91,9 +92,11 @@ function setDataCollection(data) {
         });
 
         $.picker.add(opts);
+        $.picker.setSelectedRow(0, selectedIndex);
     } else if (OS_ANDROID) {
         var opts = {
-            options: _data.pluck('title')
+            options: _data.pluck('title'),
+            selectedIndex: selectedIndex
         };
 
         $.picker.hide();

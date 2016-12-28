@@ -136,6 +136,10 @@ function hide() {
     }));
 
     triggerUpdate();
+    $.trigger('close', {
+        type: "close",
+        source: $
+    });
 }
 
 /**

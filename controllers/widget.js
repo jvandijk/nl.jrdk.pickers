@@ -135,7 +135,13 @@ function hide() {
         duration: 300
     }));
 
-    triggerUpdate();
+    if (OS_IOS) {
+        triggerUpdate();
+    }
+    $.trigger('close', {
+        type: "close",
+        source: $
+    });
 }
 
 /**
@@ -172,6 +178,12 @@ function triggerUpdate(event) {
         source: $,
         model: value
     });
+    if (OS_ANDROID) {
+        $.trigger('close', {
+            type: "close",
+            source: $
+        });
+    }
 }
 
 function cleanup() {
